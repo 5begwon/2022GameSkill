@@ -12,6 +12,7 @@ public class Stage1Spawner : MonoBehaviour
         StartCoroutine(SekunCreate());
         StartCoroutine(VirusCreate());
         StartCoroutine(GermCreate());
+        StartCoroutine(WhiteSphere());
     }
 
     IEnumerator VacteriaCreate()
@@ -60,6 +61,7 @@ public class Stage1Spawner : MonoBehaviour
             if(D.Persent(30))
             {
                 var obj = Instantiate(whiteSphere, new Vector3(Random.Range(-40, 40), 0, 220), Quaternion.identity);
+                Debug.Log("¹éÇ÷±¸");
             }
             yield return new WaitForSeconds(8f);
         }

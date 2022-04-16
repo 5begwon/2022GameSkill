@@ -151,6 +151,8 @@ public class GameManager : Singleton<GameManager>
         Player.gameObject.GetComponent<PlayerController>().StopAllCoroutines();
         hpEnding.Play();
         AllDestroy();
+        D.scoreList.Add(Score);
+        StartCoroutine(Ending(true));
     }
 
     public void PpDie()
@@ -158,6 +160,8 @@ public class GameManager : Singleton<GameManager>
         Player.gameObject.GetComponent<PlayerController>().StopAllCoroutines();
         ppEnding.Play();
         AllDestroy();
+        D.scoreList.Add(Score);
+        StartCoroutine(Ending(false));
     }
 
     public void AllDie()
@@ -176,5 +180,20 @@ public class GameManager : Singleton<GameManager>
             Destroy(GameManager.Instance.enemyList[i]);
         }
         GameManager.Instance.enemyList.Clear();
+    }
+
+    IEnumerator Ending(bool type)
+    {
+        switch(type)
+        {
+            case true:
+                yield return new WaitForSeconds((float)hpEnding.duration);
+                SceneChangeManager.Instance.SceneChange("End");
+                break;
+            case false:
+                yield return new WaitForSeconds((float)ppEnding.duration);
+                SceneChangeManager.Instance.SceneChange("End");
+                break;
+        }
     }
 }
