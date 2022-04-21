@@ -33,7 +33,7 @@ public class HotKeyManager : Singleton<HotKeyManager>
         }
         else if (Input.GetKeyDown(KeyCode.F6))
         {
-
+            SceneChangeManager.Instance.SceneChange("Title");
         }
 
     }
